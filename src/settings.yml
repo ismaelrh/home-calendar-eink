@@ -1,0 +1,133 @@
+---
+strategy: plugin_merge
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data:
+  calendar_source:
+    time_format: '24h'
+    today_in_tz: '2026-09-06T00:00:00+02:00'
+    events:
+    - summary: '[R] Stand-up diario (debe ocultarse)'
+      date_time: '2026-09-07T08:30:00+02:00'
+      start_full: '2026-09-07T08:30:00+02:00'
+      end_full: '2026-09-07T08:45:00+02:00'
+      start: '08:30'
+      end: '08:45'
+      all_day: false
+      description: 'Evento recurrente de prueba'
+    - summary: 'Café de bienvenida'
+      date_time: '2026-09-06T16:00:00+02:00'
+      start_full: '2026-09-06T16:00:00+02:00'
+      end_full: '2026-09-06T16:30:00+02:00'
+      start: '16:00'
+      end: '16:30'
+      all_day: false
+      description: 'Evento de prueba para hoy'
+    - summary: 'Reunión de equipo'
+      date_time: '2026-09-07T09:30:00+02:00'
+      start_full: '2026-09-07T09:30:00+02:00'
+      end_full: '2026-09-07T10:15:00+02:00'
+      start: '09:30'
+      end: '10:15'
+      all_day: false
+      description: 'Revisión semanal del proyecto'
+    - summary: 'Entrega del informe'
+      date_time: '2026-09-08T00:00:00+02:00'
+      start_full: '2026-09-08T00:00:00+02:00'
+      end_full: '2026-09-09T00:00:00+02:00'
+      start: ''
+      end: ''
+      all_day: true
+      description: 'Enviar la versión final'
+    - summary: 'Comida con Ana'
+      date_time: '2026-09-09T14:00:00+02:00'
+      start_full: '2026-09-09T14:00:00+02:00'
+      end_full: '2026-09-09T15:30:00+02:00'
+      start: '14:00'
+      end: '15:30'
+      all_day: false
+      description: 'Restaurante del centro'
+    - summary: 'Conferencia de diseño'
+      date_time: '2026-09-10T00:00:00+02:00'
+      start_full: '2026-09-10T00:00:00+02:00'
+      end_full: '2026-09-12T00:00:00+02:00'
+      start: ''
+      end: ''
+      all_day: true
+      description: 'Evento de varios días'
+    - summary: 'Llamada con el cliente'
+      date_time: '2026-09-12T11:00:00+02:00'
+      start_full: '2026-09-12T11:00:00+02:00'
+      end_full: '2026-09-12T12:00:00+02:00'
+      start: '11:00'
+      end: '12:00'
+      all_day: false
+      description: 'Presentación del prototipo'
+    - summary: 'Taller interno'
+      date_time: '2026-09-11T15:00:00+02:00'
+      start_full: '2026-09-11T15:00:00+02:00'
+      end_full: '2026-09-11T17:00:00+02:00'
+      start: '15:00'
+      end: '17:00'
+      all_day: false
+      description: 'Sesión práctica del equipo'
+polling_verb: get
+framework_version: 2.3.7
+serverless_language: node
+polling_url: https://usetrmnl.com/api/plugin_settings/{{caldav_id}}/data
+polling_headers: authorization=bearer {{user_token}}
+polling_body: ''
+id: 469328
+oauth_enabled: 'false'
+oauth_pkce_enabled: 'no'
+oauth_authorize_url: ''
+oauth_token_url: ''
+oauth_scopes: ''
+oauth_scope_separator: ''
+oauth_refresh_url: ''
+oauth_auth_params: ''
+oauth_token_headers: ''
+oauth_token_site: ''
+oauth_token_params: ''
+oauth_token_request_auth_method: ''
+oauth_body_format: ''
+oauth_token_response_metadata: ''
+oauth_authorization_method: ''
+oauth_refresh_params: ''
+oauth_token_field_name: ''
+oauth_expiry_field_name: ''
+oauth_expiry_strategy: ''
+oauth_fixed_expiry_ms: ''
+custom_fields:
+- keyname: calendar_source
+  field_type: plugin_instance_select
+  name: Calendar Source
+  plugin_keyname: caldav
+  description: Select wich Caldav plugin you want to use
+  help_text: Only active Caldav plugins are shown.
+- keyname: author_bio
+  field_type: author_bio
+  name: About This Plugin
+  description: For this plugin you need to have the <a href="https://usetrmnl.com/plugin_settings/new?keyname=caldav">CalDav</a> calendar plugin active and in a playlist. You can hide it so you only see this one. Select an active CalDav calendar and it's pretty.
+  category: calendar
+- keyname: show_calendar_items
+  field_type: select
+  name: Show calendar items
+  description: Show all your items (over 3 columns) or only the items of today.
+  help_text: This is only for the full view
+  default: all
+  options:
+  - Today: today
+  - All: all
+- keyname: show_weeks
+  field_type: select
+  name: Weeks in view
+  description: How many weeks would you like to see in the screen?
+  help_text: This is only for the full view, and the half-vertical view.
+  default: 7
+  options:
+  - 1 week: 7
+  - 2 weeks: 14
+name: Calendario Simple
+description: Pretty Calendar - Versión modificad
+refresh_interval: 15
