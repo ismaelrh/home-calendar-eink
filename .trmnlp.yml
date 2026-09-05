@@ -58,7 +58,7 @@ variables:
       - summary: 'Conferencia de diseño'
         date_time: '2026-09-10T00:00:00+02:00'
         start_full: '2026-09-10T00:00:00+02:00'
-        end_full: '2026-09-12T00:00:00+02:00'
+        end_full: '2026-09-16T00:00:00+02:00'
         start: ''
         end: ''
         all_day: true
