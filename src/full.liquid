@@ -34,13 +34,13 @@
     {% endif %}
 
     <div class="col--span-1 flex flex--col">
-      <div class="rounded--full text--center aspect--1/1 h--14 lg:h--24 {% if is_today == 'true' %}bg--black{% elsif date < current_date %}text--gray-40{% endif %}">
-        <div class="value--small lg:value lg:pt--4 pt--3 pb--0.5 {% if is_today == 'true' %}text--white{% elsif date < current_date %}text--gray-40{% endif %}">{{ day_num }}</div>
+      <div class="rounded--full text--center aspect--1/1 h--14 lg:h--24 {% if is_today == 'true' %}bg--gray-80{% elsif date < current_date %}text--gray-40{% endif %}">
+        <div class="value--small lg:value lg:pt--4 pt--3 pb--0.5 {% if date < current_date %}text--gray-40{% endif %}">{{ day_num }}</div>
 
         {% if event_count > 0 %}
         <div class="flex flex--row flex--center-x gap--xsmall">
           {% for dot in (1..event_count) %}
-          <div class="w--1 h--1 lg:w--2 lg:h--2 lg:mt--2 rounded--full {% if is_today == 'true' %}bg--white{% else %}bg--gray-30{% endif %}"></div>
+          <div class="w--1 h--1 lg:w--2 lg:h--2 lg:mt--2 rounded--full bg--gray-30"></div>
           {% endfor %}
         </div>
         {% endif %}
@@ -179,8 +179,8 @@
             <div class="px--1 py--2 lg:py--4 border--h-6 agenda-item value--xxsmall lg:value--xsmall rounded--xsmall w--full">
               <div class="text--gray-30 label--small lg:text--gray-20 lg:value--xxsmall lg:mb--2">{{ display_start }} &mdash; {{ display_end }}</div>
               {{ event.summary }}
-              {% if event.description != "" %}
-              <div class="label--small text--gray-30 lg:value--xxsmall">{{ event.description }}</div>
+              {% if event.location != blank %}
+              <div class="label--small text--gray-30 lg:value--xxsmall">{{ event.location }}</div>
               {% endif %}
             </div>
             {% endif %}
@@ -278,8 +278,8 @@
             <div class="px--1 py--2 border--h-6 agenda-item value--xxsmall rounded--xsmall w--full mb--1">
               <div class="text--gray-30 label--small">{{ display_start }} &mdash; {{ display_end }}</div>
               {{ event.summary }}
-              {% if event.description != "" %}
-              <div class="label--small text--gray-30">{{ event.description }}</div>
+              {% if event.location != blank %}
+              <div class="label--small text--gray-30">{{ event.location }}</div>
               {% endif %}
             </div>
             {% endif %}

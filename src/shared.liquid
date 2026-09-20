@@ -64,10 +64,10 @@ TRMNL Calendar Plugin - Shared Logic
 {% assign week_start_offset = days_since_week_start | times: -86400 %}
 {% assign week_start_timestamp = local_timestamp | plus: week_start_offset %}
 
-{% comment %} Build 14 days starting from week start {% endcomment %}
+{% comment %} Build approximately 3 months starting from week start. Templates limit the visible days to fit each layout. {% endcomment %}
 {% assign days_data_string = "" %}
 
-{% for i in (0..13) %}
+{% for i in (0..92) %}
   {% assign day_offset = i | times: 86400 %}
   {% assign check_date_timestamp = week_start_timestamp | plus: day_offset %}
   {% assign check_date_str = check_date_timestamp | date: "%Y-%m-%d" %}
