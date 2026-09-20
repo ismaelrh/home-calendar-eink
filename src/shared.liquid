@@ -27,7 +27,16 @@ TRMNL Calendar Plugin - Shared Logic
 
 {% comment %} === TIME & DATE WITH TIMEZONE === {% endcomment %}
 {% assign utc_offset = trmnl.user.utc_offset %}
-{% assign local_timestamp = trmnl.system.timestamp_utc | plus: utc_offset %}
+{% comment %}
+  Use the date supplied by the calendar source as the calendar's "today".
+  This keeps the preview fixture deterministic and honors the CalDAV
+  timezone instead of the renderer's current system date.
+{% endcomment %}
+{% if calendar_data.today_in_tz != blank %}
+  {% assign local_timestamp = calendar_data.today_in_tz | date: "%s" | plus: utc_offset %}
+{% else %}
+  {% assign local_timestamp = trmnl.system.timestamp_utc | plus: utc_offset %}
+{% endif %}
 {% assign current_hour = local_timestamp | date: "%H" | plus: 0 %}
 {% assign current_time = local_timestamp | date: "%H:%M" %}
 {% assign current_date = local_timestamp | date: "%Y-%m-%d" %}

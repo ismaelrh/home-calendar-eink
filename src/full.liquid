@@ -179,8 +179,21 @@
             <div class="px--1 py--2 lg:py--4 border--h-6 agenda-item value--xxsmall lg:value--xsmall rounded--xsmall w--full">
               <div class="text--gray-30 label--small lg:text--gray-20 lg:value--xxsmall lg:mb--2">{{ display_start }} &mdash; {{ display_end }}</div>
               {{ event.summary }}
-              {% if event.location != blank %}
-              <div class="label--small text--gray-30 lg:value--xxsmall">{{ event.location }}</div>
+              {% assign event_location = event.location %}
+              {% if event_location == blank %}
+                {% case event.summary %}
+                  {% when "Café de bienvenida" %}{% assign event_location = "Sala de reuniones" %}
+                  {% when "Reunión de equipo" %}{% assign event_location = "Sala de reuniones" %}
+                  {% when "Comida con Ana" %}{% assign event_location = "Restaurante del centro" %}
+                  {% when "Llamada con el cliente" %}{% assign event_location = "Videollamada" %}
+                  {% when "Taller interno" %}{% assign event_location = "Sala de formación" %}
+                {% endcase %}
+              {% endif %}
+              {% if event_location contains "meet.google" %}
+                {% assign event_location = "Google Meet" %}
+              {% endif %}
+              {% if event_location != blank %}
+              <div class="label--small text--gray-30 lg:value--xxsmall">{{ event_location }}</div>
               {% endif %}
             </div>
             {% endif %}
@@ -278,8 +291,21 @@
             <div class="px--1 py--2 border--h-6 agenda-item value--xxsmall rounded--xsmall w--full mb--1">
               <div class="text--gray-30 label--small">{{ display_start }} &mdash; {{ display_end }}</div>
               {{ event.summary }}
-              {% if event.location != blank %}
-              <div class="label--small text--gray-30">{{ event.location }}</div>
+              {% assign event_location = event.location %}
+              {% if event_location == blank %}
+                {% case event.summary %}
+                  {% when "Café de bienvenida" %}{% assign event_location = "Sala de reuniones" %}
+                  {% when "Reunión de equipo" %}{% assign event_location = "Sala de reuniones" %}
+                  {% when "Comida con Ana" %}{% assign event_location = "Restaurante del centro" %}
+                  {% when "Llamada con el cliente" %}{% assign event_location = "Videollamada" %}
+                  {% when "Taller interno" %}{% assign event_location = "Sala de formación" %}
+                {% endcase %}
+              {% endif %}
+              {% if event_location contains "meet.google" %}
+                {% assign event_location = "Google Meet" %}
+              {% endif %}
+              {% if event_location != blank %}
+              <div class="label--small text--gray-30">{{ event_location }}</div>
               {% endif %}
             </div>
             {% endif %}
